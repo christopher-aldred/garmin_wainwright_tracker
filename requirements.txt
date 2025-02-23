@@ -1,0 +1,7 @@
+garminconnect==0.2.8
+garth==0.4.47
+requests==2.25.1
+gpxpy==1.6.2
+python-dotenv==1.0.1
+folium==0.19.3
+numpy==2.2.1
