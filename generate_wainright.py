@@ -25,7 +25,7 @@ from garminconnect import (
 from dotenv import load_dotenv
 
 # Local imports
-import my_vars
+import wainwright_list
 
 # Global variables
 all_achieved = set()
@@ -134,7 +134,7 @@ def find_achieved_wainwrights_batch(points: np.ndarray, wainwright_array: np.nda
     achieved_indices = np.where(min_distances <= LEEWAY)[0]
     
     # Convert indices back to peak names
-    achieved.update(list(my_vars.wainwrights.keys())[i] for i in achieved_indices)
+    achieved.update(list(wainwright_list.wainwrights.keys())[i] for i in achieved_indices)
     
     return achieved
 
@@ -143,7 +143,7 @@ def process_gpx_files():
     track_count = 0
     
     # Convert Wainwright coordinates to numpy array once
-    wainwright_array = np.array(list(my_vars.wainwrights.values()))
+    wainwright_array = np.array(list(wainwright_list.wainwrights.values()))
     
     # Pre-filter GPX files
     gpx_files = [f for f in os.listdir(gpx_dir) if f.lower().endswith('.gpx')]
@@ -188,8 +188,8 @@ def process_gpx_files():
             continue
     
     print(f"\nProcessed {track_count} GPX files.")
-    percentage_complete = (len(all_achieved) / len(my_vars.wainwrights)) * 100
-    print(f"\nTotal unique Wainwrights achieved: {len(all_achieved)} out of {len(my_vars.wainwrights)} ({percentage_complete:.1f}%)")
+    percentage_complete = (len(all_achieved) / len(wainwright_list.wainwrights)) * 100
+    print(f"\nTotal unique Wainwrights achieved: {len(all_achieved)} out of {len(wainwright_list.wainwrights)} ({percentage_complete:.1f}%)")
 
 # ---- MAP GENERATION FUNCTIONS ----
 
@@ -217,7 +217,7 @@ def generate_html():
             dash_array='4',
         ).add_to(m)
 
-    for name, coords in my_vars.wainwrights.items():
+    for name, coords in wainwright_list.wainwrights.items():
         if name not in all_achieved:
             folium.RegularPolygonMarker(
                 location=[coords[0], coords[1]],
@@ -232,7 +232,7 @@ def generate_html():
                 zIndex=1
             ).add_to(m)
 
-    for name, coords in my_vars.wainwrights.items():
+    for name, coords in wainwright_list.wainwrights.items():
         if name in all_achieved:
             folium.RegularPolygonMarker(
                 location=[coords[0], coords[1]],
@@ -272,7 +272,7 @@ def generate_html():
     m.get_root().html.add_child(folium.Element(legend_html))
 
     completed_count = len(all_achieved)
-    total_count = len(my_vars.wainwrights)
+    total_count = len(wainwright_list.wainwrights)
     stats_html = f'''
     <div style="position: fixed;
         top: 50px; right: 50px; width: 150px; height: 90px;

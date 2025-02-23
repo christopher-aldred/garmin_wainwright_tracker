@@ -1,6 +1,6 @@
 # Wainwright Peak Tracker ⛰️
 
-This repo contains Python scripts that track progress of  Wainwright peak completion in the Lake District and generates an interactive map. The code integrates with Garmin Connect to pull GPS data from activities and generates interactive maps showing completed and remaining peaks.
+This repo contains Python scripts that track progress of Wainwright peak completion in the Lake District and generates an interactive map. The code integrates with Garmin Connect to pull GPS data from activities and generates interactive maps showing completed and remaining peaks.
 
 ![map screenshot](screenshot.png)
 
@@ -66,7 +66,7 @@ Note: The GPX files must be valid GPS data in standard GPX format. Most GPS devi
 ## Files
 
 - `generate_html.py`: Main Python script that generates the maps
-- `my_vars.py`: Contains coordinates for Wainwright peaks
+- `wainwright_list.py`: Contains coordinates for Wainwright peaks
 - `index.html`: Generated detailed map
 - `basic.html`: Generated simplified map
 - `.env`: Configuration file for Garmin Connect credentials (not tracked in git)
